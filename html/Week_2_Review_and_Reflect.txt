@@ -1,0 +1,26 @@
+1. Briefly describe your understanding of what the browser does, including definitions of the following:
+
+The client represents the computer that is trying to access a webpage. When the client wants something, the browser sends requests to the server for all of the necessary items (documents, images, songs, video etc..). The browsers' job is to send requests to the server asking for things. Once the server has given the browser the information it needs, the browser renders this information so that it is viewable to the client.
+
+2. What is HTML? In your answer, include definitions of the following:
+
+HTML stands for HyperText Markup Language. It is the language that is used to create webpages. Each HTML file is made up of elements that help format the page. Almost all elements have an opening tag and a closing tag. Opening tags look something like this <body> and closing tags look the same, except for an added / for example: </body>. Sometimes attributes are used in an element. An attribute is written in the opening tag before the >. Attributes define properties of an element. Each attribute consists of the attribute name an "=" and the value. For example, <img> uses the attribute src to define the source of the image. It is used like this <img src="image source">. All of these parts of an HTML page (element, tag, attribute) can be referred to as nodes.
+
+Elements are also described as either block elements or inline elements. Block elements are elements that start on a new line on the HTML page. Inline elements do not start a new line.
+
+
+3. Very briefly, explain the purpose of the following elements:
+
+head: Is a part of the basic HTML structure. Holds the <title> which names the tab of the page.
+body: Is a part of the basic HTML structure. Contains the body of the html page.
+p: Creates a paragraph section in 
+form: Creates a form for a user to complete
+div: Creates a section in a document. Div is a block element so it creates a new line
+span: Groups together sections in a document. Span is an inline element so it does not create a new line.
+select: Creates a dropdown list.
+h2: Creates a header that is less important than h1.
+ol: Creates an ordered list (a list with numbers).
+ul: Creates an unordered list (a list with bullets).
+table: Creates a table in html.
+tr: Creates a row in a table.
+td: Creates a column of data within a row.
