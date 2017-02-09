@@ -1,3 +1,8 @@
+body {
+  max-width: 960px;
+  min-width: 460px;
+}
+
 blockquote {
   border-left: 5px solid blue;
   padding: 15px;
@@ -14,6 +19,8 @@ cite {
   padding-left: 0px;
 }
 
+
+
 /* you're welcome to edit the
 image, figure, and figcaption CSS if you'd like, 
 but it's optional! */
@@ -29,4 +36,30 @@ figure {
 figcaption {
   font-style: italic;
   text-align: right;
+}
+
+#sidebar {
+  display: inline-block;
+  vertical-align: top;
+  width: 20%;
+}
+
+#main-content {
+ position: absolute;
+ display: inline-block; 
+ width: 70%;
+ right: auto;
+}
+
+
+@media screen and (max-width: 500px) {
+  body {
+    display: table;
+  }
+  h1{
+    font-size:1em;
+  }
+  #sidebar {
+    display: table-row;
+  }
 }
