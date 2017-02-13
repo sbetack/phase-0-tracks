@@ -1,0 +1,36 @@
+1. Name at least three categories of CSS adjustments (example: colors)?
+	
+	-Fonts (families, sizes, styles, colors)
+	-Positioning
+	-Backgrounds
+
+2. What are the three ways to link a CSS rule to an HTML document? Which one is the best and why?
+
+	1) Inline styling in the HTML tag
+	2) Embedding CSS into HTML
+	3) Linking the HTML file to a separate CSS document
+
+	Linking the HTML file to a CSS document is the best method because it keeps the HTML clean.
+
+
+3. What is a selector? Give examples of at least three types of selectors.
+	
+	A selector is what is used to link CSS styling in the CSS doc to specific sections of the HTML. 
+
+	Three types of selectors:
+	1) Using an element tag (body, h1, p, ...etc)
+	2) Using an id: creates a link to one particular section of an HTML (can only be used once)
+	3) Using a class: creates a link to every section that is labeled with that particular class (can be used multiple times)
+
+4. What is the box model?
+	
+	The box model describes the fact that every HTML element is represented as a rectangular box. Each box size can be altered by changing: the content width and height, the padding, and/or the margins.
+
+5. Explain and give an example of the cascading effect of CSS.
+	
+	The cascading effect of CSS means that the last rule applied overrules everything before it. For example, if an image width is set to 800px, then it's sent to 100px further down the page, the image width will be 100px.
+
+6. Name two CSS techniques that assist in responsive design.
+
+	One CSS technique that helps with responsive design is using percentages instead of pixels when setting widths, margins, padding, and other sizes. Media queries also help with responsive design. They start with the code @media [condition]. Everything below the media query will apply under the given condition.
+
