@@ -1,0 +1,12 @@
+-Locate your desired floor destination.
+-Push button to call elevator.
+-When elevator arrives, enter elevator.
+	-Scan the floor number buttons until you find your desired floor destination
+		-Push button for desired floor destination
+	-Wait and make awkward eye contact with others (if you have eyes)
+	-If elevator stops and doors open: 
+		-Check the current floor number
+			-If the current floor number is your desired floor destination
+				-Exit elevator
+			-If not
+				-Go back to line 6
