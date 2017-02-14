@@ -21,11 +21,11 @@ until number_of_employees_to_process == 0
 			result = "Probably a vampire."
 	end
 
-	if (employee_age.to_i == Date.today.year - employee_birth_year.to_i)&&((want_garlic_bread=="yes")||(want_health_insurance=="yes"))
+	if ((employee_age.to_i == Date.today.year - employee_birth_year.to_i) || (employee_age.to_i - 1 == Date.today.year - employee_birth_year.to_i)) && ((want_garlic_bread=="yes") || (want_health_insurance=="yes"))
 		result = "Probably not a vampire"
-	if (employee_age.to_i != Date.today.year - employee_birth_year.to_i)&&((want_garlic_bread=="no")||(want_health_insurance=="no"))
+	if ((employee_age.to_i != Date.today.year - employee_birth_year.to_i)|| (employee_age.to_i - 1 == Date.today.year - employee_birth_year.to_i)) && ((want_garlic_bread=="no") || (want_health_insurance=="no"))
 		result = "Probably a vampire."	
-	if (employee_age.to_i != Date.today.year - employee_birth_year.to_i) && (want_garlic_bread == "no") && (want_health_insurance=="no")
+	if ((employee_age.to_i != Date.today.year - employee_birth_year.to_i) && (employee_age.to_i - 1 !== Date.today.year - employee_birth_year.to_i)) && (want_garlic_bread == "no") && (want_health_insurance=="no")
 		result = "Almost certainly a vampire."
 	if (employee_name == "Drake Cula") || (employee_name == "Tu Fang") 
 		result = "Definitely a vampire."
