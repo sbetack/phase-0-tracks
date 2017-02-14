@@ -1,3 +1,40 @@
-body {
-	background-color: pink;
+section {
+  padding: 10px; 
+  font-family: Georgia;
+}
+
+.column-1 {
+  display: inline-block;
+  max-width: 45%;
+  border-right: 1px solid pink;
+}
+.column-2 {
+  display: inline-block;
+  max-width: 45%;
+  vertical-align: top;
+}
+header {
+  padding: 10px;
+  margin: 5px;
+  background-color: #ffd0dd;
+  color: white;
+  font-family: Helvetica;
+}
+footer {
+  padding: 10px;
+  font-family: Helvetica;
+  background-color: #ffd0dd;
+  color: white;
+}
+
+a {
+  color: purple;
+}
+
+a:hover {
+  color: red;
+}
+
+li {
+  list-style-type: circle;
 }
