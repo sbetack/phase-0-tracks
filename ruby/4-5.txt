@@ -1,0 +1,10 @@
+Consider the workflow advice above, and compare it to your coding process so far. How can your workflow improve? What mistakes have caused you the most trouble in the past? Write a paragraph or two about flaws in your workflow and how you plan to break any bad habits. Submit it in the provided text box.
+
+Things that I am doing well:
+I am constantly checking my code to make sure it is working the way that I am expecting it to work. I like seeing my indentations line up so I am pretty careful about indenting properly.
+
+Things that I need to work on:
+Sometimes when I am working on a challenge I don't feel a lot of need to write a good variable name. For example, if the entire challenge only returns one string, I use return_string as my variable name. I want to focus in the future on naming my variables well because if I practice it now, I will be better at it in the future. I am also not commiting my code enough. I save frequenntly like I would in a word document, but I need to commit more often, especially before changing a bunch of code. 
+
+My plan to better my workflow:
+ALWAYS use purposeful variable names even if the problem is a short challenge. For now, I will commit everytime I finish a release. In the future I will break up my work into pieces and commit after I finish each piece.

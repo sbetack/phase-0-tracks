@@ -1,0 +1,49 @@
+Variables
+1. What is a variable? Why might a programmer use a variable?
+
+	A variable is a word or word(s) that are used to represent data. Programmers use variables because it makes calling data easier, and variables can represent multiple different things.
+
+2. If the value of first_name is "Abraham" and last_name is "Lincoln", explain the order in which Ruby will run the line full_name = first_name + last_name, and what the final result will be.
+	This sets the variable full_name equal to first_name + last_name. The final result would be "AbrahamLincoln". There is no space because the space was not added in the variable description.
+
+Data Types
+3. For each of the following data types, write a short definition and give at least one example of when you might use the data type in a program. (Don't use an example we've already provided.)
+
+	string: A string is a word or words that are put together using "".
+	integer: An integer is any whole number or negative whole number.
+	float: A float is a number represented with a decimal places and values after the decimal place. For example, the integer 5 represented as a float is 5.0.
+	nil: Nil represents nothing. It is not the same as 0, however nil.to_f and nil.to_i equal 0.
+	boolean: A statement that can be evaluated to true or false.
+	Algorithms: A method or function that solves a problem systematically.
+
+
+4. What is an algorithm?
+
+	An algorithm is a method or function that solves a problem systematically.
+
+5. What are two common categories of algorithm in computer science? 
+
+	
+Methods
+6. What is a method? Why might a programmer choose to use a method?
+
+7. Define the following terms as they relate to a method. 
+
+return value
+side effect
+parameter
+argument
+implicit return
+8. What are global scope and method scope? How do those scopes impact the availability of data at different points in a program?
+
+Control Flow
+9. What is control flow? Why might a programmer choose to use flow control?
+
+10. Define the following terms as they relate to flow control.
+
+loop
+if
+else
+elsif
+while
+until
