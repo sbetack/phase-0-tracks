@@ -50,18 +50,22 @@ consonants = 'bcdfghjklmnpqrstvwxyz'
 spy_name_arr = spy_name.split(' ')
 spy_name_arr.reverse!
 
-spy_name_arr.map { |letter|
-	if vowels.include?(letter)
-		index = vowels.index(letter)
-		letter = vowels[index+1]
-	elsif consonants.include?(letter)
-		index = consonants.index(letter)
-		letter = consonants[index+1]
+fake_name = spy_name_arr.map do |word|
+	word.each do |letter|
+		if vowels.include?(letter)
+			index = vowels.index(letter)
+			p index
+			letter = vowels[index+1]
+		elsif consonants.include?(letter)
+			index = consonants.index(letter)
+			p index
+			letter = consonants[index+1]
+		end
 	end
-}
+end
 
 
-
+p fake_name
 
 
 
