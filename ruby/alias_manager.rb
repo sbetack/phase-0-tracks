@@ -34,41 +34,62 @@ Use map to loop through the array
 	if letter is a vowel 
 		check the vowel index of the vowels string
 		change the vowel to the next index
-	if the letter is a consonant change it to the next consonant
+	if the letter is a consonant 
 		change it to the next consonant
-		shovel it into the fake name variable
 set fake name equal to new array joined with a space
 return fake name
 
 =end
 
-puts "What's the spy's name?"
-spy_name = gets.chomp
-vowels = 'aeiou'
-consonants = 'bcdfghjklmnpqrstvwxyz'
+def fake_name_maker ()
+	names_and_fake_names = {}
+	puts "What's the spy's name? (enter 'quit' to end session)"
+	spy_name_str = gets.chomp
+	until spy_name_str == "quit"
+		vowels = 'aeiou'
+		consonants = 'bcdfghjklmnpqrstvwxyz'
 
-spy_name_arr = spy_name.split(' ')
-spy_name_arr.reverse!
+		spy_name_arr = spy_name_str.split(' ')
+		spy_name_arr.reverse!
 
-fake_name = spy_name_arr.map do |word|
-	word.each do |letter|
-		if vowels.include?(letter)
-			index = vowels.index(letter)
-			p index
-			letter = vowels[index+1]
-		elsif consonants.include?(letter)
-			index = consonants.index(letter)
-			p index
-			letter = consonants[index+1]
+		fake_name_array = spy_name_arr.map do |word|
+			fake_name_word = ""
+			word.each_char do |letter|
+				letter.downcase
+				if vowels.include?(letter)
+					i = vowels.index(letter)
+					if i == 4
+						new_vowel = vowels[0]
+					else
+						new_vowel = vowels[i+1]
+					end
+					fake_name_word << new_vowel
+				elsif consonants.include?(letter)
+					i = consonants.index(letter)
+					if i == 20
+						new_consonant = consonants[0]
+					else
+						new_consonant = consonants[i+1]
+					end
+					fake_name_word << new_consonant
+				end
+			end
+			fake_name_word.capitalize!
 		end
+		fake_name_str = fake_name_array.join(' ')
+		p fake_name_str
+		names_and_fake_names[spy_name_str] = fake_name_str
+	puts "What's the spy's name? (enter 'quit' to end session)"
+	spy_name_str = gets.chomp
+	end
+
+	names_and_fake_names.each do |key, value| 
+		p value + " is really " + key
 	end
 end
 
 
-p fake_name
-
-
-
+fake_name_maker()
 
 
 
