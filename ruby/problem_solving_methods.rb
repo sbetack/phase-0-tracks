@@ -1,4 +1,4 @@
-AR = [1,2,3,4,5,6,7]
+test_array = [1,2,3,4,5,6,7]
 def search_index(ar, integer)
 	  return_index = nil
 	  counter = 0
@@ -9,11 +9,9 @@ def search_index(ar, integer)
 		 	counter+=1
 		  end
  	end
-p return_index
+return_index
 end
-search_index(AR,6)
-
-
+p search_index(test_array,6)
 
 #fibonacci
 def fibonacci(length_of_arr)
@@ -25,7 +23,7 @@ def fibonacci(length_of_arr)
       fib_arr << 0
     elsif counter == 1 
       fib_arr << 1
-    elsif
+    else
       sum = fib_arr[counter-1] + fib_arr[counter-2]
       fib_arr << sum
     end
@@ -34,8 +32,8 @@ def fibonacci(length_of_arr)
   fib_arr
 end
 
-fibonacci(6)
-fibonacci(100)[-1]
+p  fibonacci(6)
+p fibonacci(100).last
 
 #insertion sort
 def insertion_sort(arr)
@@ -50,4 +48,6 @@ def insertion_sort(arr)
 end
 
 array= [6,5,4,3,2,1,7]
-insertion_sort(array)
+p insertion_sort(array)
+
+
