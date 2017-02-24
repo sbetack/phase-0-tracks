@@ -32,9 +32,15 @@ cities_and_states = {
   "dallas" => "texas",
   "houston" => "texas"
 }
+cities_and_states_capitalized = {}
+
 cities_and_states.each do |city, state|
-  city.capitalize!
-  state.capitalize!
-  puts "#{city} is in #{state}"
+  city_capitalized = city.capitalize
+  state_capitalized = state.capitalize
+  cities_and_states_capitalized[city_capitalized] = state_capitalized
+  puts "#{city_capitalized} is in #{state_capitalized}"
 end
+
+p cities_and_states_capitalized
+
 
