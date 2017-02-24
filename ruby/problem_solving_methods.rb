@@ -1,15 +1,15 @@
 #Release 0:
 
 def search_index(arr, integer)
-	  return_index = nil
-	  counter = 0
-	 	arr.each do |num| 
-		  if arr[counter] == integer
-		  return_index = counter
-		  else
-		 	counter+=1
-		  end
- 	end
+  return_index = nil
+  counter = 0
+ 	arr.each do |num| 
+	  if arr[counter] == integer
+	  return_index = counter
+	  else
+	 	counter+=1
+	  end
+	end
 return_index
 end
 
@@ -51,8 +51,8 @@ p fibonacci(100).last
 def insertion_sort(arr)
 	for index in 1...arr.length
 		while (index > 0) && (arr[index-1] > arr[index]) 
-		  	arr[index], arr[index-1] = arr[index-1], arr[index]   #swap "cheat" that we found online
-		  	index -= 1
+	  	arr[index], arr[index-1] = arr[index-1], arr[index]   #swap "cheat" that we found online
+	  	index -= 1
 	  end
 	end
 	arr 
