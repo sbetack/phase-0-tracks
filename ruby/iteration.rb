@@ -1,3 +1,4 @@
+#Release 0
 def list_music
   genre1 = "pop"
   genre2 = "classical"
@@ -5,9 +6,10 @@ def list_music
   yield(genre1, genre2)
 end
 
-list_music { |genre1, genre2| puts "You can choose from #{genre1} and #{genre2}" }
+p list_music { |genre1, genre2| puts "You can choose from #{genre1} and #{genre2}" }
 
 
+#Release 1
 #.each with an array
 music_genres = ["pop", "classical", "jazz", "country", "rock"]
 music_genres_capitalized = []
@@ -42,5 +44,24 @@ cities_and_states.each do |city, state|
 end
 
 p cities_and_states_capitalized
+
+
+# Release 2:
+test_array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+p test_array.delete_if {|num| num < 5 }
+
+test_array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+p test_array.keep_if {|num| num < 5 }
+
+test_array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+p test_array.select { |num| num >= 7}
+
+test_array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+p test_array.drop_while {|num| num < 3}
+
 
 
