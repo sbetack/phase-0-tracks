@@ -64,4 +64,44 @@ test_array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 p test_array.drop_while {|num| num < 3}
 
 
+cities_and_states = {
+  "austin" => "texas",
+  "chicago" => "illinois",
+  "nashville" => "tennessee",
+  "dallas" => "texas",
+  "houston" => "texas"
+}
+
+p cities_and_states.delete_if {|city, state| state == "texas"}
+
+cities_and_states = {
+  "austin" => "texas",
+  "chicago" => "illinois",
+  "nashville" => "tennessee",
+  "dallas" => "texas",
+  "houston" => "texas"
+}
+
+p cities_and_states.keep_if {|city, state| state[0] == "t"}
+
+cities_and_states = {
+  "austin" => "texas",
+  "chicago" => "illinois",
+  "nashville" => "tennessee",
+  "dallas" => "texas",
+  "houston" => "texas"
+}
+p cities_and_states.select { |city, state| city[0] == "a"}
+
+cities_and_states = {
+  "austin" => "texas",
+  "chicago" => "illinois",
+  "nashville" => "tennessee",
+  "dallas" => "texas",
+  "houston" => "texas"
+}
+
+p cities_and_states.reject { |city, state| !(city[0] > "e") }
+
+
 
