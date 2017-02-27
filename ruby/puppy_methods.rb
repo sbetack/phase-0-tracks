@@ -62,8 +62,8 @@ class Football_player
   def run
     puts "*runs*"
   end
-  football_players = []
 
+  football_players = []
   for num in 1..50
     player = Football_player.new
     football_players.push(player)
