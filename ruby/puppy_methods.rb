@@ -22,6 +22,10 @@ class Puppy
     puts "*stands on hind legs*"
   end
 
+  def initialize 
+    puts "Initializing new puppy instance..."
+  end
+
 end
 
   
@@ -37,3 +41,5 @@ Roo.roll_over
 Roo.dog_years(2)
 
 Roo.human_mode
+
+Charlie = Puppy.new
