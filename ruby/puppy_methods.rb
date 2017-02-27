@@ -48,7 +48,7 @@ Charlie = Puppy.new
 class Football_player
 
   def initialize
-    puts "Initializing new football player instance"
+    puts "Initializing new football player instance..."
   end
 
   def tackle
@@ -56,19 +56,29 @@ class Football_player
   end
 
   def catch
-    puts "*catches ball"
+    puts "*catches ball*"
   end
 
   def run
     puts "*runs*"
   end
+  football_players = []
+
+  for num in 1..50
+    player = Football_player.new
+    football_players.push(player)
+  end
+
+  p football_players
+
+
+  football_players.each do |player|
+    player.tackle
+    player.catch
+    player.run
+  end
+
 end
 
-football_players = []
 
-for num in 1..50
-  football_players.push(player_number num)
-end
-
-p football_players
 
