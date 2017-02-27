@@ -1,3 +1,4 @@
+#Release 0 and 1
 class Puppy
 
   def fetch(toy)
@@ -27,8 +28,7 @@ class Puppy
   end
 
 end
-
-  
+ 
 
 Roo = Puppy.new
 
@@ -43,3 +43,32 @@ Roo.dog_years(2)
 Roo.human_mode
 
 Charlie = Puppy.new
+
+#Release 2
+class Football_player
+
+  def initialize
+    puts "Initializing new football player instance"
+  end
+
+  def tackle
+    puts "*tackles*"
+  end
+
+  def catch
+    puts "*catches ball"
+  end
+
+  def run
+    puts "*runs*"
+  end
+end
+
+football_players = []
+
+for num in 1..50
+  football_players.push(player_number num)
+end
+
+p football_players
+
