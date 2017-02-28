@@ -51,30 +51,34 @@ class Santa
   pirate_santa.get_mad_at("Dancer")
   p pirate_santa
 
-    genders =['female', 'male', 'bigender', 'gender fluid', 'n/a']
+    genders =['female', 'male', 'bigender', 'gender fluid', 'transgender']
     ethnicities = ['white', 'black', 'latino', 'asian', 'american indian', 'eskimo']
 
 ######################################################################################
 
 #loop to populate Santa class
   santas = []
-  20.times do
-    random_i_genders = rand(0..4)
-    random_i_ethinicites = rand(0..5)
-    new_santa = Santa.new(genders[random_i_genders], ethnicities[random_i_ethinicites])
+  1000.times do
+    random_gender = genders.sample
+    random_ethinicity = ethnicities.sample
+    new_santa = Santa.new(random_gender, random_ethinicity)
     santas << new_santa
   end
-  p santas
+  p santas.last
 
 ######################################################################################
 
 end
 
 #####DRIVER CODE TO TEST SETTER/GETTER METHODS######
+p "**********************************************************************************"
 test_santa = Santa.new("female", "white")
+
 p test_santa
 test_santa.gender=("male")
+p "**********************************************************************************"
 p test_santa
+p "**********************************************************************************"
 ######################################################################################
 
 
