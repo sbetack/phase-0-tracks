@@ -27,15 +27,16 @@ class Santa
 
 
 
+  genders =['female', 'male', 'bigender', 'gender fluid', 'n/a']
+  ethnicities = ['white', 'black', 'latino', 'asian', 'american indian', 'eskimo']
+
   santas = []
-  santas << Santa.new("agender", "black")
-  santas << Santa.new("female", "Latino")
-  santas << Santa.new("bigender", "white")
-  santas << Santa.new("male", "Japanese")
-  santas << Santa.new("female", "prefer not to say")
-  santas << Santa.new("gender fluid", "Mystical Creature (unicorn)")
-  santas << Santa.new("N/A", "N/A")
+  20.times do
+    random_i_genders = rand(0..4)
+    random_i_ethinicites = rand(0..5)
+    new_santa = Santa.new(genders[random_i_genders], ethnicities[random_i_ethinicites])
+    santas << new_santa
+  end
   p santas
-  
 end
 
