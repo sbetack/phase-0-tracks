@@ -3,9 +3,12 @@ class Santa
    puts "Initializing Santa instance..."
     @gender = gender
     @ethnicity = ethnicity
-    
+    @age = 0
   end
-
+  def celebrate_birthday
+    age += 1
+  end
+  
   def speak
     puts "Ho, ho ho! Haaaappy holidays!"
   end
@@ -15,16 +18,27 @@ class Santa
   end
 
   reindeer_ranking = ["Rudolph", "Dasher", "Dancer", "Prancer", "Vixen", "Comet", "Cupid", "Donner", "Blitzen"]
-  
-  age = 0
 
+  #getter methods 
+  def age 
+    @age
+  end
+
+  def ethnicity
+    @ethnicity
+  end
+  #setter method
+  def gender=(new_gender)
+    @gender = new_gender
+  end
+
+#####DRIVER CODE######
   pirate_santa = Santa.new("female", "white")
   
   p pirate_santa
 
   pirate_santa.speak
   pirate_santa.eat_milk_and_cookies("chocolate chip")
-
 
 
   genders =['female', 'male', 'bigender', 'gender fluid', 'n/a']
@@ -40,3 +54,7 @@ class Santa
   p santas
 end
 
+pirate_santa = Santa.new("female", "white")
+p pirate_santa.ethnicity
+pirate_santa.gender=("male")
+p pirate_santa
