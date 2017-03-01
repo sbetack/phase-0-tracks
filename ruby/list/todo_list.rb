@@ -8,6 +8,7 @@ class TodoList
 	end
 
 	def add_item(item)
+		@list_items << item
 	end
 
 	def delete_item(item)
