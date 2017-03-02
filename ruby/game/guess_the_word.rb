@@ -14,12 +14,12 @@ class GuessTheWord
 	end
 
 	def phrase_contains_letter_guess(letter_guess)
+		@letter_guess_count +=1
 		@phrase.split('').each do |letter|
 			if letter == letter_guess
 				return true
 			end
 		end
-		@letter_guess_count +=1
 		false
 	end
 
@@ -67,7 +67,6 @@ user_answer = gets.chomp.downcase
 while new_game.letter_guess_count < max_letter_count
 	puts "Guess a letter that is included in player-one's secret word/phrase"
 	letter_guess = gets.chomp
-	new_game.letter_guess_count += 1
 	if new_game.phrase_contains_letter_guess(letter_guess)
 		if new_game.letter_guess_is_new(letter_guess)
 			new_game.returns_phrase_with_letter_guess
@@ -86,6 +85,7 @@ while new_game.letter_guess_count < max_letter_count
 			end
 		else
 			puts "Oops, you already guessed '#{letter_guess}'"
+			new_game.letter_guess_count -= 1
 		end
 	else
 		puts "Sorry, there is no '#{letter_guess}' in this phrase."
@@ -96,7 +96,7 @@ while new_game.letter_guess_count < max_letter_count
 		puts "You are out of letter guesses. You have one chance to guess the word!"
 		word_guess = gets.chomp
 		if new_game.user_2_wins(word_guess)
-			puts "Congrats, you got it right! The word is '#{new_game.phrase}'"
+			puts "Congrats, you got it right! The word/phrase is '#{new_game.phrase}'"
 		else
 			puts "Nope, sorry the word/phrase was '#{new_game.phrase}'"
 		end
