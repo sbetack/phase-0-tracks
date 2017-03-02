@@ -19,6 +19,7 @@ class GuessTheWord
 				return true
 			end
 		end
+		@letter_guess_count +=1
 		false
 	end
 
@@ -48,19 +49,22 @@ class GuessTheWord
 	def user_2_wins(user_2_guess)
 		@phrase == user_2_guess
 	end
+
 end
 
 
 
 #############user-interface############
-puts "Hey welcome to the two-player game GUESS THE WORD!! Pick a player-one and a player-two"
 new_game = GuessTheWord.new()
+puts "Hey welcome to the two-player game GUESS THE WORD!! Pick a player-one and a player-two"
 
 puts "Shh!!! Player-one, enter you're secret word or phrase."
 new_game.phrase = gets.chomp
-new_game.calc_max_letter_guesses
-while !new_game.is_over
-	puts "Hey Player-two! Guess a letter that is included in Player-one's secret phrase"
+puts "\n"*300
+max_letter_count = new_game.calc_max_letter_guesses
+puts "Hey Player-two! Based on the length of this word/phrase you have #{max_letter_count} letter guesses before you must guess the word!"
+while new_game.letter_guess_count < max_letter_count
+	puts "Guess a letter that is included in player-one's secret word/phrase"
 	letter_guess = gets.chomp
 	new_game.letter_guess_count += 1
 	if new_game.phrase_contains_letter_guess(letter_guess)
@@ -72,19 +76,28 @@ while !new_game.is_over
 				puts "What is your word guess?"
 				word_guess = gets.chomp
 				if new_game.user_2_wins(word_guess)
-					puts "Congrats, you got it right! The word is #{new_game.phrase}"
+					puts "Congrats, you got it right! The word is '#{new_game.phrase}'"
 				else
-					puts "Nope, sorry the word was #{new_game.phrase}"
+					puts "Nope, sorry the word was '#{new_game.phrase}'"
 				end
-				new_game.is_over = true
 			end
 		else
-			puts "Oops, you already guessed #{letter_guess}"
+			puts "Oops, you already guessed '#{letter_guess}'"
 		end
 	else
-		puts "Sorry, there is no #{letter_guess} in this phrase."
+		puts "Sorry, there is no '#{letter_guess}' in this phrase."
 	end
 end
+
+puts "You are out of letter guesses. You have one chance to guess the word!"
+word_guess = gets.chomp
+if new_game.user_2_wins(word_guess)
+	puts "Congrats, you got it right! The word is '#{new_game.phrase}'"
+else
+	puts "Nope, sorry the word/phrase was '#{new_game.phrase}'"
+end
+
+	
 
 
 
