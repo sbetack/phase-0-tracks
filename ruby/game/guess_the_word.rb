@@ -33,7 +33,7 @@ class GuessTheWord
 				phrase_with_letter_guesses += '  '
 			end
 		end	
-		phrase_with_letter_guesses 
+		p phrase_with_letter_guesses 
 	end
 
 	def user_2_wins(user_2_guess)
