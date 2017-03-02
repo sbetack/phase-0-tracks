@@ -31,28 +31,48 @@ def create_list(list_string)
 	items = list_string.split(" ")
 	grocery_list = {}
 	items.each do |item|
-		grocery_list[item] = 1
+		grocery_list[item.downcase] = 1
 	end
 	print_list(grocery_list)
 	grocery_list
 end
 
 def add_item(list, item, value = 1)
-	list[item] = value
+	list[item.downcase] = value
 end
 
 def remove_item(list, item)
+	list.delete(item.downcase)
+end
 
+def update_quantity(list, item, new_quant)
+	list[item] = new_quant
 end
 
 def print_list(list)
-	puts "the list will print here"
-	p list
+	puts "Your grocery list is below:"
+	list.each do |item, quantity|
+		puts "#{item.capitalize}: #{quantity}"
+	end
+	puts "Happy shopping!"
+
 end
+
 
 
 new_list = create_list("carrots apples cereal pizza")
 add_item(new_list, "avocado", 6)
+# print_list(new_list)
+p "*******************************"
+p add_item(new_list, "grape")
+p "*******************************"
+# print_list(new_list)
+remove_item(new_list, "carrots")
+# print_list(new_list)
+update_quantity(new_list, "apples", 10)
 print_list(new_list)
-add_item(new_list, "grape")
-print_list(new_list)
+
+
+
+
+
