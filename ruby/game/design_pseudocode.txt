@@ -12,12 +12,12 @@ steps: the max guess count is the user_1 phrase length divided by 3 + 1
 output: max guess count
 
 make a method that checks if the letter is in the word/phrase
-input: user_1 phrase
+input: user_1 phrase, letter guess
 steps: loop through phrase and check to see if the letter guessed matches any letters in the phrase
 output: true or false
 
 make a method that returns the phrase with blanks except for the correct guesses
-input: user phrase
+input: user phrase, letter guess
 steps: loops through phrase 
 	IF the letter guessed does not equal the letter in the phrase 
 		replace letter in the phrase with "_"
