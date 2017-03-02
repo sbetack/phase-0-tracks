@@ -59,10 +59,11 @@ new_game = GuessTheWord.new()
 puts "Hey welcome to the two-player game GUESS THE WORD!! Pick a player-one and a player-two"
 
 puts "Shh!!! Player-one, enter you're secret word or phrase."
-new_game.phrase = gets.chomp
+new_game.phrase = gets.chomp.downcase
 puts "\n"*300
 max_letter_count = new_game.calc_max_letter_guesses
-puts "Hey Player-two! Based on the length of this word/phrase you have #{max_letter_count} letter guesses before you must guess the word!"
+puts "Hey Player-two! Based on the length of this word/phrase you have #{max_letter_count} letter guesses before you must guess the word! Are you ready!?!"
+user_answer = gets.chomp.downcase
 while new_game.letter_guess_count < max_letter_count
 	puts "Guess a letter that is included in player-one's secret word/phrase"
 	letter_guess = gets.chomp
@@ -77,8 +78,10 @@ while new_game.letter_guess_count < max_letter_count
 				word_guess = gets.chomp
 				if new_game.user_2_wins(word_guess)
 					puts "Congrats, you got it right! The word is '#{new_game.phrase}'"
+					break
 				else
 					puts "Nope, sorry the word was '#{new_game.phrase}'"
+					break
 				end
 			end
 		else
@@ -87,15 +90,20 @@ while new_game.letter_guess_count < max_letter_count
 	else
 		puts "Sorry, there is no '#{letter_guess}' in this phrase."
 	end
+	if max_letter_count-new_game.letter_guess_count > 0
+		puts "You have #{max_letter_count-new_game.letter_guess_count} letter guess(es) left!"
+	else
+		puts "You are out of letter guesses. You have one chance to guess the word!"
+		word_guess = gets.chomp
+		if new_game.user_2_wins(word_guess)
+			puts "Congrats, you got it right! The word is '#{new_game.phrase}'"
+		else
+			puts "Nope, sorry the word/phrase was '#{new_game.phrase}'"
+		end
+	end
 end
 
-puts "You are out of letter guesses. You have one chance to guess the word!"
-word_guess = gets.chomp
-if new_game.user_2_wins(word_guess)
-	puts "Congrats, you got it right! The word is '#{new_game.phrase}'"
-else
-	puts "Nope, sorry the word/phrase was '#{new_game.phrase}'"
-end
+
 
 	
 
