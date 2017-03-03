@@ -1,10 +1,10 @@
 class GuessTheWord
 	attr_accessor :phrase, :letter_guess_count, :is_over, :all_letter_guesses
 	
-	def initialize(phrase='')
+	def initialize(phrase='', all_letter_guesses=[])
 		@phrase = phrase
 		@phrase_with_letter_guesses = ''
-		@all_letter_guesses = []
+		@all_letter_guesses = all_letter_guesses
 		@letter_guess_count = 0
 		@is_over = false
 	end

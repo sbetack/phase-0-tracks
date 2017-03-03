@@ -1,7 +1,7 @@
 require_relative 'guess_the_word'
 
 describe GuessTheWord do 
-	let(:game) { GuessTheWord.new('hello') }
+	let(:game) { GuessTheWord.new('hello', ['l']) }
 
 	it "Calculates the max letter guess count" do
 		expect(game.calc_max_letter_guesses).to eq 2
@@ -16,7 +16,7 @@ describe GuessTheWord do
 	end
 
 	it "Returns the phrase with the correct letter guesses" do 
-		expect(game.returns_phrase_with_letter_guess("l")).to eq "_ _ ll_ "
+		expect(game.returns_phrase_with_letter_guess).to eq "__ll_"
 	end
 
 	it "Returns true if the word guess is correct" do
