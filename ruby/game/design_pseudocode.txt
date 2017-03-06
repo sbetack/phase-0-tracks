@@ -1,0 +1,56 @@
+make a class GuessTheWord
+make word, guess, and guess count available outside the class
+
+make an initialize method
+@phrase = phrase
+attributes: word, letter_guess_count, is over
+start guess count at 0
+
+make a method to calculate the max guess count
+input: user_1 phrase
+steps: the max guess count is the user_1 phrase length divided by 3 + 1
+output: max guess count
+
+make a method that checks if the letter is in the word/phrase
+input: user_1 phrase, letter guess
+steps: loop through phrase and check to see if the letter guessed matches any letters in the phrase
+output: true or false
+
+make a method adds a letter guess to the array of letter guesses 
+
+
+make a method that returns the phrase with blanks except for the correct guesses
+input: user phrase, letter guess
+steps: loops through phrase 
+	IF the letter guessed does not equal the letter in the phrase 
+		replace letter in the phrase with "_"
+	ELSE
+		keep the letter
+output: new phrase
+
+
+make a method that check to see if word guess wins
+input: user_2 guess, phrase
+steps: the game is_over, check to see if user_2 guess == user_1 phrase
+output: true or false
+
+-----------------user-interface----------------
+asks user_1 for a word
+Tell the user_2 how many letter guesses they have using max letter guess count
+
+While the game is not over
+	ask user_2 for a letter guess
+	IF letter is found in check_for_letter
+		call return_with_blanks method
+		and ask user_2 if they would like to guess the word
+		IF yes
+			ask for word guess
+				if user_2_wins
+					tell them they won
+				else
+					tell them they lost
+
+		ELSE
+			add one to the letter guess count
+
+
