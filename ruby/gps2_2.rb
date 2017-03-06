@@ -74,5 +74,73 @@ print_list(new_list)
 
 
 
+###########WORKING WITH CLASS##############
+
+class GroceryList
+	attr_reader :list
+
+	def initialize(list_string)
+		items = list_string.split(" ")
+		@list = {}
+		items.each do |item|
+			@list[item.downcase] = 1
+		end
+		print_list
+		@list
+	end
+
+	def add_item(item, value = 1)
+		@list[item.downcase] = value
+	end
+
+	def remove_item(item)
+		@list.delete(item.downcase)
+	end
+
+	def update_quantity(item, new_quant)
+		@list[item] = new_quant
+	end
+
+	def print_list
+		puts "Your grocery list is below:"
+		@list.each do |item, quantity|
+			puts "#{item.capitalize}: #{quantity}"
+		end
+		puts "Happy shopping!"
+
+	end
+end
 
 
+new_list = GroceryList.new("carrots apples cereal pizza")
+new_list.add_item("avocado", 6)
+# print_list(new_list)
+p "*******************************"
+p new_list.add_item("grape")
+p "*******************************"
+# print_list(new_list)
+new_list.remove_item("carrots")
+# print_list(new_list)
+new_list.update_quantity("apples", 10)
+new_list.print_list
+
+
+
+=begin
+	
+What did you learn about pseudocode from working on this challenge?
+   I learned that it is helpfun to break up pseudocode into inputs, steps, and outputs. I also learned that it is helpful to capitalize keywords(IF, ELSE, WHILE) and use proper indentation.
+
+What are the tradeoffs of using arrays and hashes for this challenge?
+   It was a good idea to use hashes because we were able to keep the food item and it's quantity grouped together.
+What does a method return?
+   A method returns the last thing that was evaluated inside of it.
+What kind of things can you pass into methods as arguments?
+	You can pass other data structures into arguments or even other methods.
+How can you pass information between methods?
+	you can pass information between methods by naming the outputs of methods as variables or by using classes.
+What concepts were solidified in this challenge, and what concepts are still confusing?
+	This challenged helped me understand how to work with multiple methods together. However, I am still a little confused about how much driver code is too much and/or what can just be in driver code versus what needs to be in a method.
+
+	
+end
