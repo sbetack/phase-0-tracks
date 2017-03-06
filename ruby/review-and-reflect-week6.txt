@@ -1,0 +1,28 @@
+1. What are classes? Be sure to define the following terms in your explanation and describe the relationships between them:
+ 
+	class: Classes are bigger groups that can be filled with instances.
+	state: The data that is put into an instance variable
+	behavior: a method of the class.
+	instance variable: an instance variable is an instance of a class.
+	instance method: an instance method is a method that can be called on a variable.
+
+	Classes are made so that instances of the class can be made quickly. Classes are useful because if variable are made into attributes that are accessible from all methods.
+
+2. What are attributes?
+	
+	Attributes are details about the whole class or each instance within a class. All attributes are declared in the intitialize method. 
+
+3. Give an example of a real world object, and describe how you might assign its attributes if you were to design a class to represent that object.
+	
+	SoccerPlayer could be a class. Within this class all of the instance variables would be specific soccer players. Some attributes might be name, height, weight, team, jersey number. Some behaviors that I might want my soccer players to have is score a goal, steal the ball, and sprint. 
+
+4. What is the purpose of the initialize method? When does it run?
+	
+	The intialize method runs everytime you start a new instance of the class. It's purpose is to hold all the attributes, and begin new ones for each instance.
+
+5. What are modules?
+
+	Modules are blocks of code that contain variable(s) and method(s).
+
+6. What are the different ways you can use a module?
+	Modules can be mixedin to classes, therefore they are sometimes classe 'mixins'. They can be used in multiple classes at the same time. Or modules can even be saved and used in a different project at a difference time.
