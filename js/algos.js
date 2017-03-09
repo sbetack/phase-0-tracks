@@ -88,10 +88,10 @@ function getNumOfRandWords(number) {
   for(var i=0; i<number; i++) {
     var random_num = Math.floor((Math.random() * 10) + 1);
     new_word = '';
-      for(var j=0; j<random_num; j++) {
-        var random_index = Math.floor((Math.random() * alphabet.length-1) + 0);
-        new_word += alphabet[random_index];
-      }
+    for(var j=0; j<random_num; j++) {
+      var random_index = Math.floor((Math.random() * alphabet.length-1) + 0);
+      new_word += alphabet[random_index];
+    }
     random_words.push(new_word);
   }
   return random_words;
