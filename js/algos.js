@@ -1,4 +1,12 @@
 //finds longest word
+/* set the first item in the array as the temporary longest word
+  loop through the array starting at index 1
+    compare this word length to the temporary longest word
+    IF the new word is longer
+      set the new word to be the temporary longest word
+  end the loop
+  return the longest word
+  */
 
 function findLongestPhrase(array) {
   var longest_word = array[0];
@@ -23,6 +31,14 @@ console.log(findLongestPhrase(test_array2));
 
 
 //finds key-value match
+/* loop through one of the object's keys
+      for each key check to see if that key is in the other object
+      IF the key is in the other object 
+          check to see that the values match
+            IF they do 
+              return true
+      ELSE return false
+      */
 
 function anyKeyValueMatch(obj1, obj2) {
   for (var key in obj1) {
@@ -50,6 +66,21 @@ console.log(anyKeyValueMatch(test_obj3, test_obj4));
 
 
 // Random words function
+/* the function getNumOfRandWords takes in a number
+    create an alphabet string so that we can make random words
+    create a blank return array
+    Set up a loop that runs that number of times creating a random word each time
+      get a random length between 1 and 10 for that word
+      create a blank new word string
+        Loop again through the random length
+          add a random letter each time to the new word string
+        end the loop
+      add the word to the return array
+    end
+    return the return array 
+  */
+
+
 
 function getNumOfRandWords(number) {
   var alphabet = 'abcdefghijklmnopqrstuvwxyz';
@@ -66,6 +97,18 @@ function getNumOfRandWords(number) {
   return random_words;
 }
 
+// Driver code
+function driverCode() {
+    for (var i=1; i<=10; i++) {
+    console.log(i);
+    var random_input_num = Math.floor((Math.random() * 8) + 1);
+    var test = getNumOfRandWords(random_input_num);
+    console.log(test);
+    console.log(findLongestPhrase(test));
+    console.log("_________________________________________"); 
+  }
+}
 
-console.log(getNumOfRandWords(4));
+driverCode()
+
 
