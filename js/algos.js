@@ -46,4 +46,26 @@ test_obj3 = {name: "Steven", age: 40, height: "6feet"};
 test_obj4 = {name: "Tamir", age: 54, height: "6feet3inch"};
 
 
-console.log(anyKeyValueMatch(test_obj3, test_obj4))
+console.log(anyKeyValueMatch(test_obj3, test_obj4));
+
+
+// Random words function
+
+function getNumOfRandWords(number) {
+  var alphabet = 'abcdefghijklmnopqrstuvwxyz';
+  random_words = [];
+  for(var i=0; i<number; i++) {
+    var random_num = Math.floor((Math.random() * 10) + 1);
+    new_word = '';
+      for(var j=0; j<random_num; j++) {
+        var random_index = Math.floor((Math.random() * alphabet.length-1) + 0);
+        new_word += alphabet[random_index];
+      }
+    random_words.push(new_word);
+  }
+  return random_words;
+}
+
+
+console.log(getNumOfRandWords(4));
+
