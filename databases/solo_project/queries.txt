@@ -1,0 +1,89 @@
+__________________RELEASE 2___________________________
+************1***************
+sqlite> SELECT * FROM movies;
+1|Saw|103|4|4
+2|Finding Nemo|100|1|1
+3|No Strings Attached|108|4|3
+4|How to Train Your Dragon|98|2|2
+
+************2***************
+sqlite> UPDATE movies SET genre_id = 1 WHERE name="How to Train Your Dragon";
+sqlite> SELECT * FROM movies;
+1|Saw|103|4|4
+2|Finding Nemo|100|1|1
+3|No Strings Attached|108|4|3
+4|How to Train Your Dragon|98|2|1
+
+************3***************
+sqlite> SELECT * FROM movies, ratings, genres WHERE movies.rating_id = ratings.id and movies.genre_id = genres.id;
+1|Saw|103|4|4|4|R|4|Horror
+2|Finding Nemo|100|1|1|1|G|1|Comedy
+3|No Strings Attached|108|4|3|4|R|3|RomCom
+4|How to Train Your Dragon|98|2|1|2|PG|1|Comedy
+
+************4***************
+sqlite> SELECT movies.name, movies.length_mins, ratings.rating, genres.genre FROM movies JOIN ratings ON movies.rating_id = ratings.id JOIN genres ON  movies.genre_id = genres.id;
+Saw|103|R|Horror
+Finding Nemo|100|G|Comedy
+No Strings Attached|108|R|RomCom
+How to Train Your Dragon|98|PG|Comedy
+sqlite>
+
+************5***************
+sqlite> DELETE FROM movies WHERE genre_id=4;
+sqlite> SELECT * FROM movies;
+2|Finding Nemo|100|1|1
+3|No Strings Attached|108|4|3
+4|How to Train Your Dragon|98|2|1
+sqlite>
+
+_____________________________________________________________
+
+__________________RELEASE 3___________________________
+
+sqlite> SELECT ratings.rating, genres.genre, movies.name FROM movies CROSS JOIN ratings ON movies.rating_id = ratings.id CROSS JOIN genres ON  movies.genre_id = genres.id;
+G|Comedy|Finding Nemo
+R|RomCom|No Strings Attached
+PG|Comedy|How to Train Your Dragon
+
+
+sqlite> SELECT ratings.rating,  movies.name, movies.length_mins FROM movies LEFT OUTER JOIN ratings ON movies.rating_id = ratings.id;
+G|Finding Nemo|100
+R|No Strings Attached|108
+PG|How to Train Your Dragon|98
+
+
+sqlite> SELECT ratings.rating,  movies.name, movies.length_mins FROM movies CROSS JOIN ratings;
+G|Finding Nemo|100
+PG|Finding Nemo|100
+PG13|Finding Nemo|100
+R|Finding Nemo|100
+G|No Strings Attached|108
+PG|No Strings Attached|108
+PG13|No Strings Attached|108
+R|No Strings Attached|108
+G|How to Train Your Dragon|98
+PG|How to Train Your Dragon|98
+PG13|How to Train Your Dragon|98
+R|How to Train Your Dragon|98
+
+sqlite> SELECT movies.name, genres.genre FROM genres INNER JOIN movies ON genres.id = movies.genre_id;
+Finding Nemo|Comedy
+No Strings Attached|RomCom
+How to Train Your Dragon|Comedy
+sqlite>
+
+sqlite> SELECT movies.name, genres.genre FROM movies CROSS JOIN genres;
+Finding Nemo|Comedy
+Finding Nemo|Drama
+Finding Nemo|RomCom
+Finding Nemo|Horror
+No Strings Attached|Comedy
+No Strings Attached|Drama
+No Strings Attached|RomCom
+No Strings Attached|Horror
+How to Train Your Dragon|Comedy
+How to Train Your Dragon|Drama
+How to Train Your Dragon|RomCom
+How to Train Your Dragon|Horror
+sqlite>
