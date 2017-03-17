@@ -1,0 +1,18 @@
+sqlite> select * from reviews join businesses on business_id = businesses.id join users on user_id = users.id;
+
+1|5|great burgers!|1|1|1|red robin|1|Joe|LeBeau
+2|2|terrible food, so unfair!|1|2|1|red robin|2|Donald|Trump
+3|5|excellent service!|3|4|3|greasy spoon diner|4|Barack|Obama
+4|5|my favorite store!|5|3|5|Togs|3|Sarah|Betack
+
+sqlite> select stars, comment, businesses.name, users.first_name, users.last_name  from reviews join businesses on business_
+
+5|great burgers!|red robin|Joe|LeBeau
+2|terrible food, so unfair!|red robin|Donald|Trump
+5|excellent service!|greasy spoon diner|Barack|Obama
+5|my favorite store!|Togs|Sarah|Betack
+
+sqlite> select stars, comment, businesses.name, users.first_name, users.last_name  from reviews join businesses on business_id = businesses.id join users on user_id = users.id WHERE businesses.name='red robin';
+
+5|great burgers!|red robin|Joe|LeBeau
+2|terrible food, so unfair!|red robin|Donald|Trump
