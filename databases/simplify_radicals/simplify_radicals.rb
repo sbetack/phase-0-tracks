@@ -37,6 +37,19 @@
 
 # __________________________________________________________
 
+# require 'sqlite3'
+# db = SQLite3::Database.new("simplify_rads.db") 
+
+# create_table_cmd = <<-SQL
+#   CREATE TABLE IF NOT EXISTS simplifying_radical_problems(
+#   id INTEGER PRIMARY KEY,
+#   problem VARCHAR(255),
+#   solution VARCHAR(255),
+#   level_of_difficulty = INT
+#   )
+# SQL
+
+# db.execute(create_table_cmd)
 
 #takes in the radical expressions as strings using sqrt() to expression radicals
 def has_add_sub_or_div(radical_expression)
@@ -96,7 +109,6 @@ def simplify_coefficient_of_radicand(radical_expression)
   radicand = get_the_radicand(radical_expression)
   radicand_coeff = get_the_coefficient(radicand)
   simplified_coefficient = []
-  p is_perfect_square?(radicand_coeff)
   if !is_perfect_square?(radicand_coeff)
     n = radicand_coeff / 2
     until (radicand_coeff % n**2 == 0) 
@@ -111,9 +123,6 @@ def simplify_coefficient_of_radicand(radical_expression)
   simplified_coefficient
 end
 
-
-
-
 #this is a hash that maps each variable letter to it's corresponding exponent for ex: x^6yz^3 returns {'x' => 6, 'y' => 1, 'z' => 3}
 def separate_variables_with_corresponding_exponents(variable_expression)
   variables_mapped_to_exponents = {}
@@ -125,15 +134,13 @@ def separate_variables_with_corresponding_exponents(variable_expression)
     elsif is_letter(character) && (variable_expression[index+1] == '^')
       begin_exponent = index+2
       end_exponent = index+3
-      p variable_expression[end_exponent]
       until variable_expression[end_exponent] == nil || is_letter(variable_expression[end_exponent])
         end_exponent += 1
       end
-      p variable_expression[begin_exponent...end_exponent]
       variables_mapped_to_exponents[character] = variable_expression[begin_exponent...end_exponent].to_i
     end
   end
-  variables_mapped_to_exponents #so far this only works for one and two digit exponents ##would need to write an until t
+  variables_mapped_to_exponents 
 end
 
 
@@ -187,10 +194,41 @@ def simplify_radical_expression(radical_expression)
   simplified_vars = simplify_variables_in_radicand(radical_expression)  #this is a nested array
   formatted_simplified_vars = format_simplified_vars_for_inside_rad_and_outside_rad(simplified_vars)
   simplified_coefficient = simplify_coefficient_of_radicand(radical_expression)  #this is an array
-  p simplified_coefficient
   infront_of_rad = "#{simplified_coefficient[0]}#{formatted_simplified_vars[0]}"
   inside_rad = "#{simplified_coefficient[1]}#{formatted_simplified_vars[1]}"
   "#{infront_of_rad}sqrt(#{inside_rad})"
+end
+
+#rates the difficulty of the problem 1=easy 2=medium 3=hard
+def all_variable_exponents_are_even(radical_expression)
+  radicand = get_the_radicand(radical_expression)
+  separated_variables_with_expons = separate_variables_with_corresponding_exponents(radicand)
+  all_are_even = true
+  p separated_variables_with_expons
+  separated_variables_with_expons.each do |variable, expon|
+    p expon
+    if !expon.even?
+      all_are_even = false
+    end
+  end
+  all_are_even
+end
+
+def rate_difficulty(radical_expression)
+  radicand = get_the_radicand(radical_expression)
+  coefficient_of_rad = get_the_coefficient(radicand)
+  var_of_rad = get_the_variable(radicand)
+  is_perf_square_and_has_no_variables = is_perfect_square?(coefficient_of_rad) && var_of_rad == ''
+  has_no_coefficient_and_all_exponents_on_vars_are_even = (coefficient_of_rad == 1) && all_variable_exponents_are_even(radical_expression)
+  p coefficient_of_rad == 1
+  p all_variable_exponents_are_even(radical_expression)
+  if is_perf_square_and_has_no_variables || has_no_coefficient_and_all_exponents_on_vars_are_even
+    return 1
+  elsif coefficient_of_rad <= 225 && var_of_rad.length<=7
+    return 2
+  else
+    return 3
+  end
 end
 
 # p radicand = get_the_radicand("8xy^2sqrt(20xy^2z)")
@@ -199,6 +237,7 @@ end
 # p separate_variables_with_corresponding_exponents("x^7080y^2z^6")
 # p simplify_coefficient_of_radicand("8xy^2sqrt(468xy^2z)")
 # p simplify_variables_in_radicand("8xy^2sqrt(468xy^3z^6)")
-p simplify_radical_expression("sqrt(64x^10y^4z^21)")
-
+# p simplify_radical_expression("sqrt(64x^10y^4z^21)")
+# p all_variable_exponents_are_even("sqrt(y^20z^6)")
+p rate_difficulty("sqrt(y^20z^6)")
 
