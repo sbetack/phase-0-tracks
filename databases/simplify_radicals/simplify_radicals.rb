@@ -46,9 +46,66 @@ def get_the_radicand(radical_expression)
   radical_expression[start_of_radicand...end_of_radicand]
 end
 
+def is_letter(character)
+  (character.ord <= 122) && (character.ord >= 97)
+end
+
+def is_constant(term)
+  get_the_variable(term) == ''
+end
+
+def get_the_variable(radicand)
+  radicand.chars.each.with_index do |character, index|
+    if is_letter(character)
+      return radicand[index..-1]
+    end
+  end
+  return ''
+end
+
+def get_the_coefficient(radicand)
+  if is_letter(radicand[0])
+    return 1
+  elsif is_constant(radicand)
+    return radicand.to_i
+  end
+  radicand.chars.each.with_index do |character, index|
+    if is_letter(character)
+      return radicand[0...index].to_i
+    end
+  end
+end
+
+def is_perfect_square?(number)
+  Math.sqrt(number) == Math.sqrt(number).to_i
+end
+
+def simplify_coefficient_of_radicand(radical_expression)
+  radicand = get_the_radicand(radical_expression)
+  radicand_coeff = get_the_coefficient(radicand)
+  simplified_coefficient = {}
+  p is_perfect_square?(radicand_coeff)
+  if !is_perfect_square?(radicand_coeff)
+    n = radicand_coeff / 2
+    until (radicand_coeff % n**2 == 0) 
+      n -= 1 
+    end
+    simplified_coefficient[n] = radicand_coeff / n**2
+  else
+    simplified_coefficient[Math.sqrt(radicand_coeff).to_i] = 1
+  end
+  simplified_coefficient
+end
+#returns a hash the key is the number that moves outside of the radical and the value is the number that stay inside the radical
+#for example, sqrt(20) would result in {2 => 5} because the simplified form is 2sqrt(5)
 
 
-p get_the_radicand("8xy^2sqrt(4x)")
+
+p radicand = get_the_radicand("8xy^2sqrt(20xy^2z)")
+p get_the_coefficient(radicand)
+p get_the_variable(radicand)
+
+p simplify_coefficient_of_radicand("8xy^2sqrt(468xy^2z)")
 
 
 
