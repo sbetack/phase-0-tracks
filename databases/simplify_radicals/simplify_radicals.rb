@@ -115,11 +115,20 @@ def separate_variables_with_corresponding_exponents(variable_expression)
       variables_mapped_to_exponents[character] = 1 
     elsif is_letter(character) && (is_letter(variable_expression[index+1]))
       variables_mapped_to_exponents[character] = 1 
+    # elsif is_letter(character) && (variable_expression[index+1] == '^') && !is_letter(variable_expression[index+2]) 
+    #   variables_mapped_to_exponents[character] = "#{variable_expression[index+2]}#{variable_expression[index+3]}".to_i
     elsif is_letter(character) && (variable_expression[index+1] == '^')
-      variables_mapped_to_exponents[character] = variable_expression[index+2].to_i
+      begin_exponent = index+2
+      end_exponent = index+3
+      p variable_expression[end_exponent]
+      until variable_expression[end_exponent] == nil || is_letter(variable_expression[end_exponent])
+        end_exponent += 1
+      end
+      p variable_expression[begin_exponent...end_exponent]
+      variables_mapped_to_exponents[character] = variable_expression[begin_exponent...end_exponent].to_i
     end
   end
-  variables_mapped_to_exponents 
+  variables_mapped_to_exponents #so far this only works for one and two digit exponents ##would need to write an until t
 end
 
 
@@ -179,9 +188,9 @@ end
 # p radicand = get_the_radicand("8xy^2sqrt(20xy^2z)")
 # p get_the_coefficient(radicand)
 # p get_the_variable(radicand)
-# p separate_variables_with_corresponding_exponents("xy^2z^6")
+p separate_variables_with_corresponding_exponents("x^7080y^2z^6")
 # p simplify_coefficient_of_radicand("8xy^2sqrt(468xy^2z)")
 # p simplify_variables_in_radicand("8xy^2sqrt(468xy^3z^6)")
-p simplify_radical_expression("sqrt(468xy^3z^6)")
+# p simplify_radical_expression("sqrt(468x^10y^3z^6)")
 
 
