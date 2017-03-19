@@ -1,6 +1,15 @@
-#check for numbers/variables infront of the radical
-#check for anything after the radical
-#check for radical in the denominator??? this may get too complicated for now
+#########check for operations that cannot be completed yet
+# check for any + or -
+# check for any div
+#########get_the_radicand
+#  gets the radicand from a radical expression
+#########get_the_stuff_infront_of_rad
+#  gets the stuff infront of the rad
+########get_the_coefficient
+#  gets the coefficent from the radicand
+########get_the_variable
+#  gets the variable part from the radical
+########
 #########simplifying the coefficient part of the radicand
 #find the coefficient of the radicand
 #IF the coefficient is not a perfect square
@@ -23,3 +32,12 @@
 #        return the the variable with (1 less than it's exponent) divided by two and the variable
 #     ELSE
 #       return 1 and the variable
+#########simplify_radical
+## puts together the result of simplifying the coefficient and simplifying the radical to return the answer
+
+
+
+
+
+
+
