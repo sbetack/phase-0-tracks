@@ -106,7 +106,7 @@ def simplify_coefficient_of_radicand(radical_expression)
     simplified_coefficient.push(radicand_coeff/n**2)
   else
     simplified_coefficient.push(Math.sqrt(radicand_coeff).to_i)
-    simplified_coefficient.push(1)
+    simplified_coefficient.push('')
   end
   simplified_coefficient
 end
@@ -199,6 +199,6 @@ end
 # p separate_variables_with_corresponding_exponents("x^7080y^2z^6")
 # p simplify_coefficient_of_radicand("8xy^2sqrt(468xy^2z)")
 # p simplify_variables_in_radicand("8xy^2sqrt(468xy^3z^6)")
-p simplify_radical_expression("sqrt(1112x^10y^4z^21)")
+p simplify_radical_expression("sqrt(64x^10y^4z^21)")
 
 
