@@ -35,6 +35,9 @@
 #########simplify_radical
 ## puts together the result of simplifying the coefficient and simplifying the radical to return the answer
 
+# __________________________________________________________
+
+
 #takes in the radical expressions as strings using sqrt() to expression radicals
 def get_the_radicand(radical_expression)
   start_of_sqrt = radical_expression.index('sqrt')
@@ -80,21 +83,23 @@ def is_perfect_square?(number)
   Math.sqrt(number) == Math.sqrt(number).to_i
 end
 
-#returns a hash the key is the number that moves outside of the radical and the value is the number that stay inside the radical
-#for example, sqrt(20) would result in {2 => 5} because the simplified form is 2sqrt(5)
+#returns an array the zero index is the number that moves outside of the radical and the first index is the number that stays inside the radical
+#for example, sqrt(20) would result in [2, 5] because the simplified form is 2sqrt(5)
 def simplify_coefficient_of_radicand(radical_expression)
   radicand = get_the_radicand(radical_expression)
   radicand_coeff = get_the_coefficient(radicand)
-  simplified_coefficient = {}
+  simplified_coefficient = []
   p is_perfect_square?(radicand_coeff)
   if !is_perfect_square?(radicand_coeff)
     n = radicand_coeff / 2
     until (radicand_coeff % n**2 == 0) 
       n -= 1 
-    end
-    simplified_coefficient[n] = radicand_coeff / n**2
+    end 
+    simplified_coefficient.push(n)
+    simplified_coefficient.push(radicand_coeff/n**2)
   else
-    simplified_coefficient[Math.sqrt(radicand_coeff).to_i] = 1
+    simplified_coefficient.push(Math.sqrt(radicand_coeff).to_i)
+    simplified_coefficient.push(1)
   end
   simplified_coefficient
 end
@@ -117,9 +122,7 @@ def separate_variables_with_corresponding_exponents(variable_expression)
   variables_mapped_to_exponents 
 end
 
-#this returns a nested array where the zero index of each of the arrays inside is what will go outside of the radical and the first index is what will go inside the radical
-# for ex: xy^3z^6 returns [[1, "x"], ["y^1", "y"], ["z^3", 1]]
-# this needs to be a nested array because hashes do not allow for repeated keys 
+
 def simplify_variables_in_radicand(radical_expression)
   radicand = get_the_radicand(radical_expression)
   if get_the_variable(radicand) != ''
@@ -130,26 +133,55 @@ def simplify_variables_in_radicand(radical_expression)
     vars_mapped_to_expons.each do |var, expon|
       if expon.even?
         expon_outside_rad = expon/2
+        if expon_outside_rad != 1
         simplified_vars.push(["#{var}^#{expon_outside_rad}", 1])
+        else
+          simplified_vars.push(["#{var}", 1])
+        end
       elsif expon.odd? && expon != 1
         expon_outside_rad = (expon-1)/2
+        if expon_outside_rad != 1
         simplified_vars.push(["#{var}^#{expon_outside_rad}","#{var}"])
+        else
+          simplified_vars.push(["#{var}","#{var}"])
+        end
       else
         simplified_vars.push([1, "#{var}"])
       end    
     end
   end
   simplified_vars
+  #this returns a nested array where the zero index of each of the arrays inside is what will go outside of the radical and the first index is what will go inside the radical
+  # for ex: xy^3z^6 returns [[1, "x"], ["y^1", "y"], ["z^3", 1]]
+  # this needs to be a nested array because hashes do not allow for repeated keys 
+  outside_rad_simplified_vars = ''
+  inside_rad_simplified_vars = ''
+  simplified_vars.each do |outside_rad, inside_rad|
+    if outside_rad != 1
+      outside_rad_simplified_vars += outside_rad
+    end
+    if inside_rad != 1
+      inside_rad_simplified_vars += inside_rad
+    end
+  end
+  [outside_rad_simplified_vars, inside_rad_simplified_vars]
 end
 
+def simplify_radical_expression(radical_expression)
+  simplified_vars = simplify_variables_in_radicand(radical_expression)  #this is a nested array
+  simplified_coefficient = simplify_coefficient_of_radicand(radical_expression)  #this is an array
+  p simplified_coefficient
+  infront_of_rad = "#{simplified_coefficient[0]}#{simplified_vars[0]}"
+  inside_rad = "#{simplified_coefficient[1]}#{simplified_vars[1]}"
+  "#{infront_of_rad}sqrt(#{inside_rad})"
+end
 
-
-p radicand = get_the_radicand("8xy^2sqrt(20xy^2z)")
-p get_the_coefficient(radicand)
-p get_the_variable(radicand)
-p separate_variables_with_corresponding_exponents("xy^2z^6")
-p simplify_coefficient_of_radicand("8xy^2sqrt(468xy^2z)")
-p simplify_variables_in_radicand("8xy^2sqrt(468xy^3z^6)")
-
+# p radicand = get_the_radicand("8xy^2sqrt(20xy^2z)")
+# p get_the_coefficient(radicand)
+# p get_the_variable(radicand)
+# p separate_variables_with_corresponding_exponents("xy^2z^6")
+# p simplify_coefficient_of_radicand("8xy^2sqrt(468xy^2z)")
+# p simplify_variables_in_radicand("8xy^2sqrt(468xy^3z^6)")
+p simplify_radical_expression("sqrt(468xy^3z^6)")
 
 
