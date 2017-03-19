@@ -39,6 +39,13 @@
 
 
 #takes in the radical expressions as strings using sqrt() to expression radicals
+def has_add_sub_or_div(radical_expression)
+  has_add = radical_expression.include?"+"
+  has_sub = radical_expression.include?"-"
+  has_div = radical_expression.include?"/"
+  has_add || has_sub || has_div
+end
+
 def get_the_radicand(radical_expression)
   start_of_sqrt = radical_expression.index('sqrt')
   start_of_radicand = start_of_sqrt + 5
@@ -115,8 +122,6 @@ def separate_variables_with_corresponding_exponents(variable_expression)
       variables_mapped_to_exponents[character] = 1 
     elsif is_letter(character) && (is_letter(variable_expression[index+1]))
       variables_mapped_to_exponents[character] = 1 
-    # elsif is_letter(character) && (variable_expression[index+1] == '^') && !is_letter(variable_expression[index+2]) 
-    #   variables_mapped_to_exponents[character] = "#{variable_expression[index+2]}#{variable_expression[index+3]}".to_i
     elsif is_letter(character) && (variable_expression[index+1] == '^')
       begin_exponent = index+2
       end_exponent = index+3
@@ -137,7 +142,6 @@ def simplify_variables_in_radicand(radical_expression)
   if get_the_variable(radicand) != ''
     radicand_vars = get_the_variable(radicand)
     vars_mapped_to_expons = separate_variables_with_corresponding_exponents(radicand_vars)
-    p vars_mapped_to_expons
     simplified_vars = []
     vars_mapped_to_expons.each do |var, expon|
       if expon.even?
@@ -159,10 +163,10 @@ def simplify_variables_in_radicand(radical_expression)
       end    
     end
   end
-  simplified_vars
-  #this returns a nested array where the zero index of each of the arrays inside is what will go outside of the radical and the first index is what will go inside the radical
-  # for ex: xy^3z^6 returns [[1, "x"], ["y^1", "y"], ["z^3", 1]]
-  # this needs to be a nested array because hashes do not allow for repeated keys 
+  simplified_vars # is nested array for ex: xy^3z^6 returns [[1, "x"], ["y^1", "y"], ["z^3", 1]]
+end
+
+def format_simplified_vars_for_inside_rad_and_outside_rad(simplified_vars)   
   outside_rad_simplified_vars = ''
   inside_rad_simplified_vars = ''
   simplified_vars.each do |outside_rad, inside_rad|
@@ -177,20 +181,24 @@ def simplify_variables_in_radicand(radical_expression)
 end
 
 def simplify_radical_expression(radical_expression)
+  if has_add_sub_or_div(radical_expression)
+    return "Sorry we can't do problems this advanced yet!"
+  end
   simplified_vars = simplify_variables_in_radicand(radical_expression)  #this is a nested array
+  formatted_simplified_vars = format_simplified_vars_for_inside_rad_and_outside_rad(simplified_vars)
   simplified_coefficient = simplify_coefficient_of_radicand(radical_expression)  #this is an array
   p simplified_coefficient
-  infront_of_rad = "#{simplified_coefficient[0]}#{simplified_vars[0]}"
-  inside_rad = "#{simplified_coefficient[1]}#{simplified_vars[1]}"
+  infront_of_rad = "#{simplified_coefficient[0]}#{formatted_simplified_vars[0]}"
+  inside_rad = "#{simplified_coefficient[1]}#{formatted_simplified_vars[1]}"
   "#{infront_of_rad}sqrt(#{inside_rad})"
 end
 
 # p radicand = get_the_radicand("8xy^2sqrt(20xy^2z)")
 # p get_the_coefficient(radicand)
 # p get_the_variable(radicand)
-p separate_variables_with_corresponding_exponents("x^7080y^2z^6")
+# p separate_variables_with_corresponding_exponents("x^7080y^2z^6")
 # p simplify_coefficient_of_radicand("8xy^2sqrt(468xy^2z)")
 # p simplify_variables_in_radicand("8xy^2sqrt(468xy^3z^6)")
-# p simplify_radical_expression("sqrt(468x^10y^3z^6)")
+p simplify_radical_expression("sqrt(1112x^10y^4z^21)")
 
 
