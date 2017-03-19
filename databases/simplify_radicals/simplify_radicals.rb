@@ -35,8 +35,20 @@
 #########simplify_radical
 ## puts together the result of simplifying the coefficient and simplifying the radical to return the answer
 
+#takes in the radical expressions as strings using sqrt() to expression radicals
+def get_the_radicand(radical_expression)
+  start_of_sqrt = radical_expression.index('sqrt')
+  start_of_radicand = start_of_sqrt + 5
+  end_of_radicand = start_of_radicand + 1
+  until radical_expression[end_of_radicand] == ')'
+    end_of_radicand += 1
+  end
+  radical_expression[start_of_radicand...end_of_radicand]
+end
 
 
+
+p get_the_radicand("8xy^2sqrt(4x)")
 
 
 
