@@ -8,7 +8,11 @@ def simplify_radical_expression(radical_expression)
   simplified_coefficient = simplify_coefficient_of_radicand(radical_expression)  #this is an array
   infront_of_rad = "#{simplified_coefficient[0]}#{formatted_simplified_vars[0]}"
   inside_rad = "#{simplified_coefficient[1]}#{formatted_simplified_vars[1]}"
-  "#{infront_of_rad}sqrt(#{inside_rad})"
+  if inside_rad != ''
+    "#{infront_of_rad}sqrt(#{inside_rad})"
+  else
+    "#{infront_of_rad}"
+  end
 end
 
 def has_add_sub_or_div(radical_expression)
@@ -135,12 +139,14 @@ end
 def format_simplified_vars_for_inside_rad_and_outside_rad(simplified_vars)   
   outside_rad_simplified_vars = ''
   inside_rad_simplified_vars = ''
-  simplified_vars.each do |outside_rad, inside_rad|
-    if outside_rad != 1
-      outside_rad_simplified_vars += outside_rad
-    end
-    if inside_rad != 1
-      inside_rad_simplified_vars += inside_rad
+  if simplified_vars != nil
+    simplified_vars.each do |outside_rad, inside_rad|
+      if outside_rad != 1
+        outside_rad_simplified_vars += outside_rad
+      end
+      if inside_rad != 1
+        inside_rad_simplified_vars += inside_rad
+      end
     end
   end
   [outside_rad_simplified_vars, inside_rad_simplified_vars]
@@ -151,9 +157,7 @@ def all_variable_exponents_are_even(radical_expression)
   radicand = get_the_radicand(radical_expression)
   separated_variables_with_expons = separate_variables_with_corresponding_exponents(radicand)
   all_are_even = true
-  p separated_variables_with_expons
   separated_variables_with_expons.each do |variable, expon|
-    p expon
     if !expon.even?
       all_are_even = false
     end
@@ -167,8 +171,6 @@ def rate_difficulty(radical_expression)
   var_of_rad = get_the_variable(radicand)
   is_perf_square_and_has_no_variables = is_perfect_square?(coefficient_of_rad) && var_of_rad == ''
   has_no_coefficient_and_all_exponents_on_vars_are_even = (coefficient_of_rad == 1) && all_variable_exponents_are_even(radical_expression)
-  p coefficient_of_rad == 1
-  p all_variable_exponents_are_even(radical_expression)
   if is_perf_square_and_has_no_variables || has_no_coefficient_and_all_exponents_on_vars_are_even
     return 1
   elsif coefficient_of_rad <= 225 && var_of_rad.length<=7
@@ -187,4 +189,5 @@ end
 # p simplify_radical_expression("sqrt(64x^10y^4z^21)")
 # p all_variable_exponents_are_even("sqrt(y^20z^6)")
 # p rate_difficulty("sqrt(y^20z^6)")
+p simplify_radical_expression("sqrt(64)")
 
