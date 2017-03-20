@@ -1,66 +1,16 @@
-#########check for operations that cannot be completed yet
-# check for any + or -
-# check for any div
-#########get_the_radicand
-#  gets the radicand from a radical expression
-#########get_the_stuff_infront_of_rad
-#  gets the stuff infront of the rad
-########get_the_coefficient
-#  gets the coefficent from the radicand
-########get_the_variable
-#  gets the variable part from the radical
-########
-#########simplifying the coefficient part of the radicand
-#find the coefficient of the radicand
-#IF the coefficient is not a perfect square
-# set n equal coefficient divided by two 
-# UNTIL the coefficient mod n^2 equals 0
-#   subtract 1 from n
-# end
-# return n and coefficient divided by n^2 in a hash maybe? 
-#ELSE 
-# take the square root of the coefficient
-# return 1 and square root of the coefficient (hash)
-#########simplifying the variable part of the radicand
-#find the variable part of the radicand
-#IF the radicand has a variable part
-#  get the exponents of each variable
-#   loop through the variables and their exponents
-#     IF the exponent is even
-#       return the variable with it's exponent divided by two and 1
-#     ELSIF the exponent is odd and not 1
-#        return the the variable with (1 less than it's exponent) divided by two and the variable
-#     ELSE
-#       return 1 and the variable
-#########simplify_radical
-## puts together the result of simplifying the coefficient and simplifying the radical to return the answer
+#takes in the radical expressions as strings using sqrt() to express radicals and returns a simplified version
+def simplify_radical_expression(radical_expression)
+  if has_add_sub_or_div(radical_expression)
+    return "Sorry we can't do problems this advanced yet!"
+  end
+  simplified_vars = simplify_variables_in_radicand(radical_expression)  #this is a nested array
+  formatted_simplified_vars = format_simplified_vars_for_inside_rad_and_outside_rad(simplified_vars)
+  simplified_coefficient = simplify_coefficient_of_radicand(radical_expression)  #this is an array
+  infront_of_rad = "#{simplified_coefficient[0]}#{formatted_simplified_vars[0]}"
+  inside_rad = "#{simplified_coefficient[1]}#{formatted_simplified_vars[1]}"
+  "#{infront_of_rad}sqrt(#{inside_rad})"
+end
 
-# __________________________________________________________
-
-########################makes the database table
-# require 'sqlite3'
-# db = SQLite3::Database.new("simplify_rads.db") 
-
-# create_table_cmd = <<-SQL
-#   CREATE TABLE IF NOT EXISTS simplifying_radical_problems(
-#   id INTEGER PRIMARY KEY,
-#   problem VARCHAR(255),
-#   solution VARCHAR(255),
-#   level_of_difficulty = INT
-#   )
-# SQL
-
-# db.execute(create_table_cmd)
-# # __________________________________________________________
-# #########populating database
-
-# list_of_problems = ['sqrt(64x^2y)', 'sqrt(40a^3b^7c)', 'sqrt(100)', 'sqrt(42a^2c^18)', 'sqrt(6408p^18q^123r^70)', 'sqrt(25xyz)', 'sqrt(68ab^7c)', 'sqrt(225x^8y)', 'sqrt(20x^7y^8)', 'sqrt(30f^7g^10)', 'sqrt(500s^7t^19)']
-# list_of_problems.each do |radical_expression|
-#   db.execute("INSERT INTO simplifying_radical_problems (problem, solution, level_of_difficulty) VALUES (?, ?, ?)", [radical_expression, simplify_radical_expression(radical_expression), rate_difficulty(radical_expression)])
-# end
-# __________________________________________________________
- 
-#takes in the radical expressions as strings using sqrt() to expression radicals
 def has_add_sub_or_div(radical_expression)
   has_add = radical_expression.include?"+"
   has_sub = radical_expression.include?"-"
@@ -68,6 +18,7 @@ def has_add_sub_or_div(radical_expression)
   has_add || has_sub || has_div
 end
 
+#radicand is the number within the sqrt
 def get_the_radicand(radical_expression)
   start_of_sqrt = radical_expression.index('sqrt')
   start_of_radicand = start_of_sqrt + 5
@@ -152,7 +103,6 @@ def separate_variables_with_corresponding_exponents(variable_expression)
   variables_mapped_to_exponents 
 end
 
-
 def simplify_variables_in_radicand(radical_expression)
   radicand = get_the_radicand(radical_expression)
   if get_the_variable(radicand) != ''
@@ -168,9 +118,9 @@ def simplify_variables_in_radicand(radical_expression)
           simplified_vars.push(["#{var}", 1])
         end
       elsif expon.odd? && expon != 1
-        expon_outside_rad = (expon-1)/2
+          expon_outside_rad = (expon-1)/2
         if expon_outside_rad != 1
-        simplified_vars.push(["#{var}^#{expon_outside_rad}","#{var}"])
+          simplified_vars.push(["#{var}^#{expon_outside_rad}","#{var}"])
         else
           simplified_vars.push(["#{var}","#{var}"])
         end
@@ -194,18 +144,6 @@ def format_simplified_vars_for_inside_rad_and_outside_rad(simplified_vars)
     end
   end
   [outside_rad_simplified_vars, inside_rad_simplified_vars]
-end
-
-def simplify_radical_expression(radical_expression)
-  if has_add_sub_or_div(radical_expression)
-    return "Sorry we can't do problems this advanced yet!"
-  end
-  simplified_vars = simplify_variables_in_radicand(radical_expression)  #this is a nested array
-  formatted_simplified_vars = format_simplified_vars_for_inside_rad_and_outside_rad(simplified_vars)
-  simplified_coefficient = simplify_coefficient_of_radicand(radical_expression)  #this is an array
-  infront_of_rad = "#{simplified_coefficient[0]}#{formatted_simplified_vars[0]}"
-  inside_rad = "#{simplified_coefficient[1]}#{formatted_simplified_vars[1]}"
-  "#{infront_of_rad}sqrt(#{inside_rad})"
 end
 
 #rates the difficulty of the problem 1=easy 2=medium 3=hard
@@ -239,7 +177,7 @@ def rate_difficulty(radical_expression)
     return 3
   end
 end
-
+#TESTING THE METHODS#
 # p radicand = get_the_radicand("8xy^2sqrt(20xy^2z)")
 # p get_the_coefficient(radicand)
 # p get_the_variable(radicand)
@@ -248,5 +186,5 @@ end
 # p simplify_variables_in_radicand("8xy^2sqrt(468xy^3z^6)")
 # p simplify_radical_expression("sqrt(64x^10y^4z^21)")
 # p all_variable_exponents_are_even("sqrt(y^20z^6)")
-p rate_difficulty("sqrt(y^20z^6)")
+# p rate_difficulty("sqrt(y^20z^6)")
 
