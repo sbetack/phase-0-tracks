@@ -117,7 +117,7 @@ def simplify_variables_in_radicand(radical_expression)
       if expon.even?
         expon_outside_rad = expon/2
         if expon_outside_rad != 1
-        simplified_vars.push(["#{var}^#{expon_outside_rad}", 1])
+          simplified_vars.push(["#{var}^#{expon_outside_rad}", 1])
         else
           simplified_vars.push(["#{var}", 1])
         end
@@ -152,7 +152,6 @@ def format_simplified_vars_for_inside_rad_and_outside_rad(simplified_vars)
   [outside_rad_simplified_vars, inside_rad_simplified_vars]
 end
 
-#rates the difficulty of the problem 1=easy 2=medium 3=hard
 def all_variable_exponents_are_even(radical_expression)
   radicand = get_the_radicand(radical_expression)
   separated_variables_with_expons = separate_variables_with_corresponding_exponents(radicand)
@@ -165,6 +164,7 @@ def all_variable_exponents_are_even(radical_expression)
   all_are_even
 end
 
+#rates the difficulty of the problem 1=easy 2=medium 3=hard
 def rate_difficulty(radical_expression)
   radicand = get_the_radicand(radical_expression)
   coefficient_of_rad = get_the_coefficient(radicand)
@@ -179,6 +179,7 @@ def rate_difficulty(radical_expression)
     return 3
   end
 end
+
 #TESTING THE METHODS#
 # p radicand = get_the_radicand("8xy^2sqrt(20xy^2z)")
 # p get_the_coefficient(radicand)
@@ -189,5 +190,5 @@ end
 # p simplify_radical_expression("sqrt(64x^10y^4z^21)")
 # p all_variable_exponents_are_even("sqrt(y^20z^6)")
 # p rate_difficulty("sqrt(y^20z^6)")
-p simplify_radical_expression("sqrt(64)")
+# p simplify_radical_expression("sqrt(100)")
 
