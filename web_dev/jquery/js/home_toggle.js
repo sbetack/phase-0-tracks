@@ -1,3 +1,7 @@
 $(document).ready(function() {
-    console.log("hello!")
+  $("#problem").hide();
+  $("#generator-solver-checkbox").click(function(e) {
+    $("#problem").toggle();
+    $("#topic").toggle();
+  }); 
 });
