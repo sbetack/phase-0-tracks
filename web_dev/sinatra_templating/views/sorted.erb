@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sorted</title>
+</head>
+<body>
+	<p>Here are all the people in the <%= @campus[0]['campus']%> campus </p>
+
+	 <ul>
+    <% @campus.each do |student| %>
+      <li> <%= student['name']%>, <%= student['campus']%> </li>
+    <% end %>
+  </ul>
+
+</body>
+</html>

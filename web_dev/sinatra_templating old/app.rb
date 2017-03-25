@@ -25,14 +25,3 @@ post '/students' do
 end
 
 # add static resources
-
-get '/students/sort' do 
-	erb :sort_by_campus
-end
-
-get '/students/bycampus' do 
-	params[:campus]
-	@campus = db.execute("SELECT * FROM students WHERE campus = ?", params[:campus])
-	erb :sorted
-end
-
